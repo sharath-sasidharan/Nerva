@@ -45,10 +45,17 @@ $(document).ready(function(){
 
 
 
+// preloader logic
 
 
+function preloader(){
+    document.querySelector("#preloader").style.display="none";
 
+}
 
+window.addEventListener("load",function(){
+    setTimeout(preloader,2000)
+})
 
 
 
