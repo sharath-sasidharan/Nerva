@@ -1,85 +1,98 @@
+//  JSON Data
 
-//selecting all required elements
-var filteritem = document.querySelector(".items"),
-    filterimg = document.querySelectorAll(".image");
+const brands = [
+  {
+    id: 1,
+    category: "watches",
+    img: "assets/images/watch1.jpg",
+  },
+  {
+    id: 2,
+    category: "watches",
+    img: "assets/images/watch3.jpg",
+  },
+  {
+    id: 3,
+    category: "headphones",
+    img: "assets/images/headphone2.jpg",
+  },
+  {
+    id: 4,
+    category: "cameras",
+    img: "assets/images/camera2.jpg",
+  },
+  {
+    id: 5,
+    category: "shoes",
+    img: "assets/images/shoe1.jpg",
+  },
+  {
+    id: 6,
+    category: "watches",
+    img: "assets/images/watch4.jpg",
+  },
+  {
+    id: 7,
+    category: "headphones",
+    img: "assets/images/headphone1.jpg",
+  },
+  {
+    id: 8,
+    category: "headphones",
+    img: "assets/images/headphone3.jpg",
+  },
+];
 
+//selection of elements
 
-//once window load
-window.onload = function () {
-    filteritem.onclick = function (selectedItem) {
-        if (selectedItem.target.classList.contains("item")) {
-            filteritem.querySelector(".active").classList.remove("active");
-            selectedItem.target.classList.add("active");
-            let filtername = selectedItem.target.getAttribute("data-name");
-            filterimg.forEach(function (image) {
-                var filterimage = image.getAttribute("data-name");
-                if (filterimage == filtername || filtername == "all") {
-                    image.classList.add("show");
-                } else {
-                    image.classList.add("hide");
-                    image.classList.remove("show");
-                }
+const gallerySection = document.querySelector(".gallery-section");
 
-            });
-        }
+const filterBtns = document.querySelectorAll(".item");
+
+// load items
+
+window.addEventListener("DOMContentLoaded", () => {
+  loadBrandItems(brands);
+});
+
+// filter Items
+
+filterBtns.forEach((categoryBtns) => {
+  categoryBtns.addEventListener("click", (e) => {
+    const category = e.currentTarget.dataset.name;
+    const filterBrandItems = brands.filter((categoryItem) => {
+      if (categoryItem.category === category) {
+        return categoryItem;
+      }
+    });
+    if (category === "all") {
+      loadBrandItems(brands);
+    } else {
+      loadBrandItems(filterBrandItems);
     }
+  });
+});
+
+function loadBrandItems(item) {
+  let brandItems = item.map((brandItem) => {
+    return `
+                <a href="#FIXME" class="image">
+                <figure>
+                  <img src="${brandItem.img}" alt="image" />
+                </figure>
+              </a>
+  `;
+  });
+  brandItems = brandItems.join("");
+  gallerySection.innerHTML = brandItems;
 }
-
-// Menu-Btn Script
-
-var menuBtn = document.querySelector('.hamburger');
-var mobile_menu = document.querySelector('nav ul ');
-menuBtn.addEventListener('click', function () {
-    menuBtn.classList.toggle('active')
-    mobile_menu.classList.toggle('isactive')
-});
-
-// Adding classes on CLICKED item to active
-
-$(document).ready(function () {
-    $(document).on('click', '.item', function () {
-        $(this).addClass('menuactive').siblings().removeClass('menuactive')
-    })
-
-});
-
-
 
 // preloader logic
 
 function preloader() {
-    document.querySelector("#preloader").style.display = "none";
-
+  document.querySelector("#preloader").style.display = "none";
 }
 
 window.addEventListener("load", function () {
-    setTimeout(preloader, 2000)
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  setTimeout(preloader, 2000);
+});

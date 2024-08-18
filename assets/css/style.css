@@ -413,14 +413,17 @@ header nav li:first-child ::after {
   font-size: 15px;
   font-weight: 500;
   font-family: sans-serif;
-  color: var(--light);
+  color: #fff;
   cursor: pointer;
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
   transition: all 0.3s;
+  background-color: #000;
+  padding: 7px 14px;
+  border: none;
 }
 
-.image_filtering_section .items .item.menuactive {
+.image_filtering_section .items .item.active {
   padding: 7px 14px;
   background-color: #8fd0a6;
   color: #fff;
@@ -429,7 +432,7 @@ header nav li:first-child ::after {
 /* Filtering Item ends here */
 
 /* Fitering image starts here */
-.gallery {
+.gallery-section {
   padding: 38px 0 50px 0;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -438,13 +441,13 @@ header nav li:first-child ::after {
   flex-wrap: wrap;
 }
 
-.gallery .image {
+.gallery-section .image {
   width: calc(100% / 4);
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
-.gallery .image img {
+.gallery-section .image img {
   width: 100%;
   vertical-align: middle;
   -webkit-transition: all 0.3s ease;
@@ -552,10 +555,10 @@ header nav li:first-child ::after {
   padding: 4px;
 }
 
-.gallery .image.hide {
+.gallery-section .image.hide {
   display: none;
 }
-.gallery .image.show {
+.gallery-section .image.show {
   display: block;
 }
 
@@ -665,7 +668,7 @@ header nav li:first-child ::after {
     transition: color 0.5s ease-in-out;
   }
 
-  .gallery .image img:hover {
+  .gallery-section .image img:hover {
     filter: none;
     -webkit-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
@@ -679,7 +682,9 @@ header nav li:first-child ::after {
     transition: filter 0.3s ease;
   }
 
-  .footer_top > .wrapper .posts li a:hover { color: var(--success); }
+  .footer_top > .wrapper .posts li a:hover {
+    color: var(--success);
+  }
 
   .footer_top > .wrapper .tags a:hover {
     background: var(--muted);
@@ -690,7 +695,9 @@ header nav li:first-child ::after {
 
 /*media query for 982px starts here*/
 @media (max-width: 982px) {
-  .footer_top > .wrapper .ft_gallery { width: 100%; }
+  .footer_top > .wrapper .ft_gallery {
+    width: 100%;
+  }
 
   .footer_bottom > .wrapper span {
     margin-bottom: 5%;
@@ -720,8 +727,12 @@ header nav li:first-child ::after {
     transition: all 0.3s ease;
   }
 
-  nav ul.isactive { left: 0; }
-  nav ul li:last-child { margin-right: 20px; }
+  nav ul.isactive {
+    left: 0;
+  }
+  nav ul li:last-child {
+    margin-right: 20px;
+  }
 
   nav ul li a {
     max-width: 200px;
@@ -738,24 +749,38 @@ header nav li:first-child ::after {
     z-index: 9999;
   }
 
-  .gallery .image { width: calc(100% / 3); }
-  .footer_top > .wrapper { display: block; }
+  .gallery .image {
+    width: calc(100% / 3);
+  }
+  .footer_top > .wrapper {
+    display: block;
+  }
 
   .footer_bottom > .wrapper {
     display: block;
     text-align: center;
   }
 
-  .ft_gallery { width: 100%;  }
-  .image_filtering_section .wrapper .items .item {padding: 5px 0px; }
-  .image_filtering_section .items .item:first-child { padding: 7px 14px; }
-  header nav li:first-child ::after { width: 0; }
+  .ft_gallery {
+    width: 100%;
+  }
+  .image_filtering_section .wrapper .items .item {
+    padding: 5px 0px;
+  }
+  .image_filtering_section .items .item:first-child {
+    padding: 7px 14px;
+  }
+  header nav li:first-child ::after {
+    width: 0;
+  }
 }
 /*media query for 982px ends here*/
 
 /*media query for 768px starts here*/
 @media (max-width: 768px) {
-  .gallery .image { width: calc(100% / 2); }
+  .gallery-section .image {
+    width: calc(100% / 2);
+  }
 
   .image_filtering_section .wrapper .items .item {
     margin: 5px;
@@ -766,8 +791,12 @@ header nav li:first-child ::after {
 
 /*media query for 540px starts here*/
 @media (max-width: 540px) {
-  .wrapper .items { max-width: 600px; }
-  .wrapper .items .item { padding: 7px 15px; }
+  .wrapper .items {
+    max-width: 600px;
+  }
+  .wrapper .items .item {
+    padding: 7px 15px;
+  }
 }
 /*media query for  540px ends here*/
 
@@ -777,27 +806,31 @@ header nav li:first-child ::after {
     flex-wrap: wrap;
     justify-content: center;
   }
-  .wrapper .items .item {  margin: 5px; }
-  .gallery .image { width: 100%; }
+  .wrapper .items .item {
+    margin: 5px;
+  }
+  .gallery-section .image {
+    width: 100%;
+  }
 }
 
 /*media query for 480px ends here*/
 
 /*media query for 320px starts here*/
 @media (max-width: 320px) {
-  .image_filtering_section .wrapper .items .item { display: block; }
+  .image_filtering_section .wrapper .items .item {
+    display: block;
+  }
 }
 /*media query for 320px ends here*/
 
 /* CSS ENDS HERE */
 
-
-
 #preloader {
-background:#000 url('../images/loader.gif') no-repeat center center;
-background-size: 15%;
-height: 100vh;
-width:100%;
-position: fixed;
-z-index: 100;
+  background: #000 url("../images/loader.gif") no-repeat center center;
+  background-size: 15%;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  z-index: 100;
 }
