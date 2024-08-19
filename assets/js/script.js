@@ -41,35 +41,63 @@ const brands = [
     category: "headphones",
     img: "assets/images/headphone3.jpg",
   },
+  {
+    id: 9,
+    category: "Pokemon",
+    img: "assets/images/2.jpg",
+  },
 ];
 
 //selection of elements
 
 const gallerySection = document.querySelector(".gallery-section");
 
-const filterBtns = document.querySelectorAll(".item");
+const itemsFilterBtns = document.querySelector(".items");
 
 // load items
 
 window.addEventListener("DOMContentLoaded", () => {
   loadBrandItems(brands);
-});
 
-// filter Items
+  // Get unique Category
+  const filterBtn = brands.reduce(
+    (values, item) => {
+      if (!values.includes(item.category)) {
+        values.push(item.category);
+      }
+      return values;
+    },
+    ["all"]
+  );
 
-filterBtns.forEach((categoryBtns) => {
-  categoryBtns.addEventListener("click", (e) => {
-    const category = e.currentTarget.dataset.name;
-    const filterBrandItems = brands.filter((categoryItem) => {
-      if (categoryItem.category === category) {
-        return categoryItem;
+  const displayFilterBtns = filterBtn
+    .map((category) => {
+      return `
+    <button class="item capitalize" data-name=${category}>
+                ${category}
+              </button>
+    `;
+    })
+    .join("");
+
+  itemsFilterBtns.innerHTML = displayFilterBtns;
+  const filterBtns = document.querySelectorAll(".item");
+  // filter Items
+
+  filterBtns.forEach((categoryBtns) => {
+    categoryBtns.addEventListener("click", (e) => {
+      const category = e.currentTarget.dataset.name;
+      const filterBrandItems = brands.filter((categoryItem) => {
+        if (categoryItem.category === category) {
+          return categoryItem;
+        }
+      });
+      if (category === "all") {
+        loadBrandItems(brands);
+      } else {
+        loadBrandItems(filterBrandItems);
       }
     });
-    if (category === "all") {
-      loadBrandItems(brands);
-    } else {
-      loadBrandItems(filterBrandItems);
-    }
   });
 });
 
